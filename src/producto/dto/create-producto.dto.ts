@@ -1,21 +1,21 @@
 import { Type } from "class-transformer"
-import { IsOptional, IsString } from "class-validator"
+import { IsNumber,  IsString } from "class-validator"
 
 export class CreateProductoDto {
 
 
    @IsString() 
-    nombre_pro 
+    nombre_pro:string
     @IsString()
-    marca 
-    @IsOptional()
+    marca :string
+    @IsNumber()
     @Type(()=>Number) 
     stock:number 
-    @IsOptional()
+    @IsNumber()
     @Type(()=>Number) 
     precio:number 
     @IsString()
-    descricion 
+    descricion:string
 
 
 }

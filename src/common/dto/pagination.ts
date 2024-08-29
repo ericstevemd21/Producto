@@ -6,7 +6,7 @@ export class pagination{
     @IsPositive()
     @IsOptional()
     @Type(()=> Number)
-    page?: number=1
+    page?:number=1
     @IsPositive()
     @IsOptional()
     @Type(()=> Number)

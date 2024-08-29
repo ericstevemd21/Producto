@@ -1,5 +1,5 @@
 
-import { Controller, Query } from '@nestjs/common';
+import { Controller, ParseIntPipe, Query } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { ProductoService } from './producto.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
@@ -16,12 +16,12 @@ export class ProductoController {
   }
 
   @MessagePattern('findAllProducto')
-  findAll(@Query() pagination:pagination) {
+  findAll(@Payload() pagination:pagination) {
     return this.productoService.findAll(pagination);
   }
 
   @MessagePattern('findOneProducto')
-  findOne(@Payload() id: number) {
+  findOne(@Payload('id',ParseIntPipe) id: number) {
     return this.productoService.findOne(id);
   }
 
@@ -31,7 +31,7 @@ export class ProductoController {
   }
 
   @MessagePattern('removeProducto')
-  remove(@Payload() id: number) {
+  remove(@Payload('id',ParseIntPipe) id: number) {
     return this.productoService.remove(id);
   }
 }
